@@ -14,17 +14,30 @@ class TOONTANKS_API ABasePawn : public APawn
 
 private:
 	
-	UPROPERTY() class UCapsuleComponent* CapsuleComp;		// add an include to the .cpp file.
-
-	UPROPERTY() UStaticMeshComponent* BaseMesh;				// type included by default with all actors.
-
-	UPROPERTY() UStaticMeshComponent* TurretMesh;
-
-	UPROPERTY() USceneComponent* ProjectileSpawnPoint;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess)); 
+	class UCapsuleComponent* CapsuleComp;		// add an include to the .cpp file.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess)); 
+	UStaticMeshComponent* BaseMesh;				// type included by default with all actors.
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess)); 
+	UStaticMeshComponent* TurretMesh;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess)); 
+	USceneComponent* ProjectileSpawnPoint;
 
 public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
+
+
+	// Here's some dumb bullshit.
+	// these variables are exposed to the details panel, but not the eventgraph.
+	UPROPERTY(VisibleAnywhere) int32 VisibleAnywhereInt = 12;
+	UPROPERTY(EditAnywhere) int32 EditAnywhereInt = 22;
+	UPROPERTY(VisibleInstanceOnly) int32 VisibleInstanceOnlyInt = 32;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) FString PawnName = "DestructoBot";
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) int32 Health = 100;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly) int32 Damage = 5;
+
+		
 
 protected:
 	// Called when the game starts or when spawned
